@@ -9,17 +9,23 @@ interface Link {
 export const Links: Link[] = [
     {
         id: 1,
-        url: "/",
-        text: "home",
+        url: "/dashboard",
+        text: "Dashboard",
     },
     {
         id: 2,
+        url: "/newsletter",
+        text: "Create Newsletter"
+    },
+    {
+        id: 3,
         url: "/people",
         text: "People",
     },
     {
-        id: 3,
+        id: 4,
         url: "/newsletters",
         text: "Newsletters",
     },
+
 ]

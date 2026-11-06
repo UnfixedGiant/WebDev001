@@ -6,7 +6,6 @@ import Link from "next/link"
 
 
 import { usePathname } from "next/navigation";
-import { useAuth } from "../hooks/useAuth"
 import { useSession, signOut } from "next-auth/react"
 
 
@@ -40,7 +39,7 @@ const Navbar = () => {
                         tabIndex={-1}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                     >
-                        {Links.map((l) => {
+                        {(session?.user ? Links : []).map((l) => {
                             const { id, url, text } = l;
                             return (
                                 <li
@@ -56,7 +55,7 @@ const Navbar = () => {
 
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        {Links.map((l) => {
+                        {(session?.user ? Links : []).map((l) => {
                             const { id, url, text } = l;
                             return (
                                 <li
@@ -89,6 +88,12 @@ const Navbar = () => {
                             tabIndex={-1}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
                         >
+                            <li>
+                                <Link href="dashboard">Dashboard</Link>
+                            </li>
+                            <li>
+                                <Link href="newsletter/create">Create Newsletter</Link>
+                            </li>
                             <li>
                                 <button onClick={() => signOut({ redirectTo: "/login" })}>
                                     Logout
